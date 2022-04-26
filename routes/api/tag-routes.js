@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Tag, Product, ProductTag } = require('../../models');
+const { deleteTag } = require('../../lib/tag');
 
 // The `/api/tags` endpoint
 
@@ -64,11 +65,8 @@ router.delete('/:id', async (req, res) => {
   // delete on tag by its `id` value
   console.log(`${req.method}: ${req.baseUrl}`);
   try {
-    const tagData = await Tag.destroy({
-      where: {
-        id: req.params.id
-      }
-    })
+    const tagData = await deleteTag(req.params.id);
+
     res.status(200).json({"tags removed": tagData})
   } catch (error) {
     res.status(500).json(error);
