@@ -70,7 +70,7 @@ router.delete('/:id', async (req, res) => {
     res.status(200).json({
       "Tags removed": tagsDeleted,
       "Products removed": productsDeleted,
-      "categories removed": categoryData
+      "Categories removed": categoryData
   })
   } catch (error) {
     res.status(500).json(error);
